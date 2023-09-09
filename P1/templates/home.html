@@ -20,13 +20,12 @@
         width: 100px;
         height: 100px;
         transform-style: preserve-3d;
-        /*transform: rotateX(45deg) rotateY(45deg);*/
         transform: rotateX({{a}}deg) rotateY({{b}}deg);
-        animation: roll 4s;
+        animation: roll 2s;
     }
 
     @keyframes roll{
-        50%{
+        100%{
             transform: rotateX({{x}}deg) rotateY({{y}}deg);
         }
     }
