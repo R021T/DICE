@@ -10,23 +10,25 @@
         body{
             padding:0;
             background: rgb(50, 50, 50);
+            display:flex;
+            justify-content:center;
+            align-items:center;
         }
     
         .box{
-            position: relative;
-            left: 33%;
-            top: 75px;
+            display:flex;
+            justify-content:space-around;
+            align-items:center;
+            margin-top:6rem;
+            flex-direction:column;
             border-radius: 20px;
             box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-            width: 500px;
-            height:500px;
+            width: 30rem;
+            height: 30rem;
             background: rgb(50, 50, 50);
         }
     
         .dice{
-            position: relative;
-            left: 195px;
-            top: 130px;
             width: 100px;
             height: 100px;
             transform-style: preserve-3d;
@@ -131,9 +133,6 @@
         }
     
         .roll{
-            position: relative;
-            left: 35%;
-            top: 43vh;
             width: 150px;
             height: 50px;
             border-radius: 10px;
@@ -151,7 +150,7 @@
         #preloader{
             background:#040506 url(https://media.giphy.com/media/K5kfQExKk731K/giphy.gif) no-repeat center;
             background-size:20%;
-            height:100vh;
+            height:150%;
             width:100%;
             position:fixed;
             z-index:100;
@@ -163,10 +162,29 @@
         .not-visible{
             display: none;
         }
+
+        @media (max-width: 1000px) {
+            .box{
+                width: 80%;
+                height: 35rem;
+                margin-top:3rem;
+            }
+            .dice{
+                width: 100px;
+                height: 100px;
+            }
+            .roll{
+                width: 10rem;
+                height: 3rem;
+                font-size: 1.5rem;
+            }
+            
+         
+        }
     </style>
     
+   
     <div id="preloader"></div>
-    
     <div id="content" class="box">
         <div class="dice">
             <div class="face front"></div>
@@ -191,6 +209,9 @@
             loader.classList.add('not-visible')
         },3000)
     </script>
+
+
+    
    
 </body>
 </html>
