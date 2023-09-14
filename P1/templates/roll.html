@@ -1,190 +1,194 @@
 {%block content%}
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
-    body{
-        padding: 0;
-        background: rgb(50, 50, 50);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .box{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-        gap: 7rem;
-        position: relative;
-        border-radius: 20px;
-        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-        width: 34%;
-        height:68%;
-        background: rgb(50, 50, 50);
-    }
-
-    .dice{
-        position: relative;
-        width: 100px;
-        height: 100px;
-        transform-style: preserve-3d;
-        margin-top: 2rem;
-        transform: rotateX({{a}}deg) rotateY({{b}}deg);
-        animation: roll 2s;
-    }
-
-    @keyframes roll{
-        100%{
-            transform: rotateX({{x}}deg) rotateY({{y}}deg);
-        }
-    }
-
-    .face{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        background: linear-gradient(145deg, black, rgb(50, 50, 50));
-        transform-style: preserve-3d;
-    }
-
-    .face::before{
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        background: #090c0f;
-        transform: translateZ(-1px);
-    }
-
-    .face::after{
-        content: '';
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        background: #9862E3;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-    }
-
-    .front{
-        transform: translateZ(50px);
-    }
-
-    .front::after{
-        width: 30px;
-        height: 30px;
-        background: #9862E3;
-        margin: -15px 0 0 -15px;
-    }
-
-    .back{
-        transform: rotateX(180deg) translateZ(50px);
-    }
-
-    .back::after{
-        margin: -35px 0 0 -30px;
-        box-shadow: 40px 0 #9862E3,
-        0 25px #9862E3,
-        40px 25px #9862E3,
-        0 50px #9862E3,
-        40px 50px #9862E3;
-    }
-
-    .top{
-        transform: rotateX(90deg) translateZ(50px);
-    }
-
-    .top::after{
-        margin: -30px 0 0 -30px;
-        box-shadow: 40px 40px #9862E3;
-    }
-
-    .bottom{
-        transform: rotateX(-90deg) translateZ(50px);
-    }
-
-    .bottom::after{
-        margin: -36px 0 0 -36px;
-        box-shadow: 26px 26px #9862E3,
-        52px 52px #9862E3,
-        52px 0 #9862E3,
-        0 52px #9862E3;
-    }
-
-    .right{
-        transform: rotateY(90deg) translateZ(50px);
-    }
-
-    .right::after{
-        margin: -30px 0 0 -30px;
-        box-shadow: 40px 0 #9862E3,
-        0 40px #9862E3,
-        40px 40px #9862E3;
-    }
-
-    .left{
-        transform: rotateY(-90deg) translateZ(50px);
-    }
-
-    .left::after{
-        margin: -35px 0 0 -35px;
-        box-shadow: 25px 25px #9862E3,
-        50px 50px #9862E3;
-    }
-
-    .roll{
-        position: relative;
-        width: 150px;
-        height: 50px;
-        border-radius: 10px;
-        color: #9862E3;
-        background: rgb(50, 50, 50);
-        border: 1px solid #9862E3;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dice App</title>
+    </head>
+    <body>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+            body{
+                padding:0;
+                background: rgb(50, 50, 50);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
         
-    }
-
-    .roll:hover{
-        background: #9862E3;
-        color: rgb(50, 50, 50);
-    }
-
-    @media (max-width: 1000px) {
-        .box{
-            width: 80%;
-            height: 80rem;
-            padding: 0;
-        }
-        .dice{
-            width: 100px;
-            height: 100px;
-        }
-        .roll{
-            width: 15rem;
-            height: 6rem;
-            font-size: 2rem;
-        }
+            .box{
+                display:flex;
+                justify-content:space-around;
+                align-items:center;
+                margin-top:6rem;
+                flex-direction:column;
+                border-radius: 20px;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                width: 30rem;
+                height: 30rem;
+                background: rgb(50, 50, 50);
+            }
         
-     
-    }
-</style>
+            .dice{
+                width: 100px;
+                height: 100px;
+                transform-style: preserve-3d;
+                transform: rotateX({{a}}deg) rotateY({{b}}deg);
+                animation: roll 2s;
+            }
 
-<div id="content" class="box">
-    <div class="dice">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-        <div class="face left"></div>
-        <div class="face right"></div>
-    </div>
-    <form action="roll">
-        <button class="roll">Roll</button>
-    </form>
+            @keyframes roll{
+                100%{
+                    transform: rotateX({{x}}deg) rotateY({{y}}deg);
+                }
+            }
+        
     
-</div>
+            .face{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                background: linear-gradient(145deg, black, rgb(50, 50, 50));
+                transform-style: preserve-3d;
+            }
+        
+            .face::before{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                background: #090c0f;
+                transform: translateZ(-1px);
+            }
+        
+            .face::after{
+                content: '';
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                background: #9862E3;
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+            }
+        
+            .front{
+                transform: translateZ(50px);
+            }
+        
+            .front::after{
+                width: 30px;
+                height: 30px;
+                background: #9862E3;
+                margin: -15px 0 0 -15px;
+            }
+        
+            .back{
+                transform: rotateX(180deg) translateZ(50px);
+            }
+        
+            .back::after{
+                margin: -35px 0 0 -30px;
+                box-shadow: 40px 0 #9862E3,
+                0 25px #9862E3,
+                40px 25px #9862E3,
+                0 50px #9862E3,
+                40px 50px #9862E3;
+            }
+        
+            .top{
+                transform: rotateX(90deg) translateZ(50px);
+            }
+        
+            .top::after{
+                margin: -30px 0 0 -30px;
+                box-shadow: 40px 40px #9862E3;
+            }
+        
+            .bottom{
+                transform: rotateX(-90deg) translateZ(50px);
+            }
+        
+            .bottom::after{
+                margin: -36px 0 0 -36px;
+                box-shadow: 26px 26px #9862E3,
+                52px 52px #9862E3,
+                52px 0 #9862E3,
+                0 52px #9862E3;
+            }
+        
+            .right{
+                transform: rotateY(90deg) translateZ(50px);
+            }
+        
+            .right::after{
+                margin: -30px 0 0 -30px;
+                box-shadow: 40px 0 #9862E3,
+                0 40px #9862E3,
+                40px 40px #9862E3;
+            }
+        
+            .left{
+                transform: rotateY(-90deg) translateZ(50px);
+            }
+        
+            .left::after{
+                margin: -35px 0 0 -35px;
+                box-shadow: 25px 25px #9862E3,
+                50px 50px #9862E3;
+            }
+        
+            .roll{
+                width: 150px;
+                height: 50px;
+                border-radius: 10px;
+                color: #9862E3;
+                background: rgb(50, 50, 50);
+                border: 1px solid #9862E3;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+        
+            .roll:hover{
+                background: #9862E3;
+                color: rgb(50, 50, 50);
+            }
+
+            @media (max-width: 1000px) {
+                .box{
+                    width: 80%;
+                    height: 50rem;
+                    margin-top: 8rem;
+                }
+                .dice{
+                    width: 100px;
+                    height: 100px;
+                }
+                .roll{
+                    width: 10rem;
+                    height: 3rem;
+                    font-size: 1.5rem;
+                }
+                
+             
+            }
+        </style>
+        
+        <div id="content" class="box">
+            <div class="dice">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+                <div class="face left"></div>
+                <div class="face right"></div>
+            </div>
+            <form action="roll">
+                <button class="roll">Roll</button>
+            </form>
+        </div>
+    </body>
+</html>
 {%endblock%}
