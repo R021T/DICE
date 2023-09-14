@@ -156,17 +156,59 @@
     @media (max-width: 1000px) {
         .box{
             width: 80%;
-            height: 80rem;
+            height: 82rem;
             padding: 0;
+            margin-top: -1rem;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);
+            border-radius: 30px;
         }
         .dice{
-            width: 100px;
-            height: 100px;
+            width: 160px;
+            height: 160px;
+            top: -0.5rem;
+        }
+        .face{
+            border-radius: 30px;
+        }
+        .face::before{
+            border-radius: 30px;
+        }
+        .face::after{
+            width: 30px;
+            height: 30px;
+        }
+        .front{
+            transform: translateZ(80px);
+        }
+        .front::after{
+            width: 50px;
+            height: 50px;
+            top: 45%;
+            left: 45%;
+        }
+        .back{
+            transform: rotateX(180deg) translateZ(80px);
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(80px);
+        }
+        .bottom{
+            transform: rotateX(-90deg) translateZ(80px);
+        }
+        .right{
+            transform: rotateY(90deg) translateZ(80px);
+        }
+        .left{
+            transform: rotateY(-90deg) translateZ(80px);
         }
         .roll{
-            width: 15rem;
-            height: 6rem;
-            font-size: 2rem;
+            width: 16.5rem;
+            height: 5rem;
+            font-size: 2.5rem;
+            border: 1.6px solid #9862E3;
+            border-radius: 20px;
+            justify-items: center;
+            margin-top: -85px;
         }
         
      
