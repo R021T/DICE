@@ -4,28 +4,38 @@
     body{
         padding:0;
         background: rgb(50, 50, 50);
+        display:flex;
+        justify-content:center;
+        align-items:center;
     }
 
     .box{
-        position: relative;
-        left: 33%;
-        top: 75px;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+        flex-direction:column;
+        gap:7rem;
+       position: relative;
+       {# left: 33%;#}
+       {# top: 75px;#}
         border-radius: 20px;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-        width: 500px;
-        height:500px;
+        width: 34%;
+        height:68%;
         background: rgb(50, 50, 50);
+
+
     }
 
     .dice{
-        position: relative;
-        left: 195px;
-        top: 130px;
-        width: 100px;
-        height: 100px;
+        {#left: 195px;#}
+        {#top: 130px;#}
+        max-width: 100px;
+        max-height: 100px;
         transform-style: preserve-3d;
         transform: rotateX({{a}}deg) rotateY({{b}}deg);
         animation: roll 2s;
+        margin-top:2rem;
     }
 
     @keyframes roll{
@@ -35,7 +45,7 @@
     }
 
     .face{
-        position: absolute;
+       position: absolute;
         width: 100%;
         height: 100%;
         border-radius: 20px;
@@ -56,8 +66,8 @@
     .face::after{
         content: '';
         position: absolute;
-        width: 18px;
-        height: 18px;
+        min-width: 18px;
+        min-height: 18px;
         background: #9862E3;
         border-radius: 50%;
         top: 50%;
@@ -69,8 +79,8 @@
     }
 
     .front::after{
-        width: 30px;
-        height: 30px;
+        min-width: 30px;
+        min-height: 30px;
         background: #9862E3;
         margin: -15px 0 0 -15px;
     }
@@ -132,20 +142,41 @@
 
     .roll{
         position: relative;
-        left: 35%;
-        top: 43vh;
+       {#left: 35%;#}
+        {#top: 43vh;#}
         width: 150px;
         height: 50px;
-        border-radius: 10px;
+        border-radius: 18px;
         color: #9862E3;
         background: rgb(50, 50, 50);
         border: 1px solid #9862E3;
         font-family: 'Plus Jakarta Sans', sans-serif;
+
+        
     }
 
     .roll:hover{
         background: #9862E3;
         color: rgb(50, 50, 50);
+    }
+
+    @media (max-width:1000px) {
+        .box{
+            width:80%;
+            height:80rem;
+            padding:0;
+        }
+        .dice{
+            width:100px;
+            height:100px;
+        }
+        .roll{
+            width:15rem;
+            height:6rem;
+            font-size:2rem;
+        }
+        
+     
     }
 </style>
 
@@ -161,5 +192,6 @@
     <form action="roll">
         <button class="roll">Roll</button>
     </form>
+    
 </div>
 {%endblock%}
